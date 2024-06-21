@@ -7,7 +7,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float moveSpeed;
     [SerializeField]
-    private GameObject weapon;
+    private GameObject[] weapons;
+
+    private int weaponIndex = 0;
 
     [SerializeField]
     private Transform shootTransform;
@@ -28,7 +30,7 @@ public class Player : MonoBehaviour
     }
     void Shoot(){
         if(Time.time - lastShootTime > shootInterval){
-            Instantiate(weapon, shootTransform.position, Quaternion.identity );
+            Instantiate(weapons[weaponIndex], shootTransform.position, Quaternion.identity );
             lastShootTime = Time.time;
         }
     }
@@ -42,5 +44,11 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
         }
         
+    }
+    public void Upgrade(){
+        weaponIndex += 1;
+        if(weaponIndex >= weapons.Length){
+            weaponIndex = weapons.Length -1;
+        }
     }
 }
