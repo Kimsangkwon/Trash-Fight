@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag == "Enemy"){
+        if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss"){
             Debug.Log("Game over");
             Destroy(gameObject);
         }else if(other.gameObject.tag == "Coin"){
