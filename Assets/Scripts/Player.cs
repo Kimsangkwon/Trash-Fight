@@ -32,4 +32,15 @@ public class Player : MonoBehaviour
             lastShootTime = Time.time;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "Enemy"){
+            Debug.Log("Game over");
+            Destroy(gameObject);
+        }else if(other.gameObject.tag == "Coin"){
+            GameManager.instance.IncreaseCoin();
+            Destroy(other.gameObject);
+        }
+        
+    }
 }
